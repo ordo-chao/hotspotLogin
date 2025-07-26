@@ -1,0 +1,283 @@
+/* Base styles for DataBalanceChecker.module.css */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1060;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+.container {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  max-width: 600px;
+  margin: 40px auto;
+  font-family: 'Poppins', sans-serif;
+  color: #333;
+}
+
+.title {
+  color: #008080;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 2em;
+  font-weight: 600;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.input {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1.05em;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box; /* Include padding in element's total width and height */
+}
+
+.input:focus {
+  outline: none;
+  border-color: #008080;
+  box-shadow: 0 0 0 3px rgba(0, 128, 128, 0.2);
+}
+
+.errorMessage {
+  color: #dc3545; /* Red for errors */
+  font-size: 0.9em;
+  margin-top: -10px; /* Adjust spacing */
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.submitButton {
+  background-color: #008080;
+  color: white;
+  padding: 14px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  font-weight: 600;
+}
+
+.closeButton
+{
+    background-color: #ff0303;
+  color: white;
+  padding: 14px 25px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
+  font-weight: 600;
+  margin-left: 20px;
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: #006666;
+}
+
+.submitButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Results Section */
+.resultsSection {
+  border-top: 1px solid #eee;
+  padding-top: 25px;
+  margin-top: 25px;
+}
+
+.resultsTitle {
+  color: #008080;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.6em;
+  font-weight: 600;
+}
+
+.progressBarContainer {
+  margin-bottom: 20px;
+}
+
+.progressBarHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.progressBarLabel {
+  color: #555;
+}
+
+.progressBarPercentage {
+  color: #008080;
+  font-weight: 600;
+}
+
+.progressBarTrack {
+  background-color: #e0e0e0;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden; /* Ensures fill stays within rounded corners */
+}
+
+.progressBarFill {
+  height: 100%;
+  background-color: #008080;
+  border-radius: 5px;
+  transition: width 0.5s ease-in-out;
+}
+
+.progressBarValue {
+  display: block;
+  text-align: right;
+  font-size: 0.9em;
+  color: #777;
+  margin-top: 5px;
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px dashed #eee;
+  font-size: 1em;
+}
+
+.detailRow:last-child {
+  border-bottom: none; /* No border for the last item */
+}
+
+.detailLabel {
+  font-weight: 500;
+  color: #444;
+}
+
+.detailValue {
+  font-weight: 400;
+  color: #666;
+  text-align: right;
+  max-width: 60%; /* Prevent long values from wrapping awkwardly */
+  word-wrap: break-word; /* Allow long words to break */
+}
+
+
+/* --- Media Queries for Responsiveness --- */
+
+/* Mobile Phones (max-width: 767px) */
+@media (max-width: 767px) {
+  .container {
+    padding: 20px;
+    margin: 20px auto;
+    width: 95%; /* Make it almost full width on small screens */
+    box-shadow: none; /* Remove shadow on very small screens for cleaner look */
+    border-radius: 0; /* Remove border-radius on very small screens */
+  }
+
+  .title {
+    font-size: 1.6em;
+    margin-bottom: 20px;
+  }
+
+  .form {
+    gap: 10px;
+  }
+
+  .input {
+    padding: 10px 12px;
+    font-size: 1em;
+  }
+
+  .submitButton {
+    padding: 12px 20px;
+    font-size: 1em;
+  }
+
+  .resultsTitle {
+    font-size: 1.4em;
+    margin-bottom: 15px;
+  }
+
+  .progressBarHeader {
+    font-size: 0.95em;
+  }
+
+  .progressBarValue {
+    font-size: 0.85em;
+  }
+
+  .detailRow {
+    flex-direction: column; /* Stack label and value vertically */
+    align-items: flex-start; /* Align text to the left */
+    gap: 5px; /* Space between stacked items */
+    padding: 8px 0;
+  }
+
+  .detailValue {
+    text-align: left;
+    max-width: 100%; /* Take full width when stacked */
+  }
+}
+
+/* Tablets (min-width: 768px and max-width: 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    padding: 25px;
+    max-width: 550px; /* Adjust max-width for tablets */
+  }
+
+  .title {
+    font-size: 1.8em;
+  }
+
+  .input {
+    font-size: 1.05em;
+  }
+
+  .submitButton {
+    font-size: 1.05em;
+  }
+
+  .resultsTitle {
+    font-size: 1.5em;
+  }
+
+  .progressBarHeader {
+    font-size: 1em;
+  }
+
+  .detailRow {
+    font-size: 1em;
+  }
+}

@@ -1,0 +1,521 @@
+/* Ensure full height and clean layout */
+html, body {
+  height: 100%;
+  overflow-x: hidden; /* Prevent horizontal scroll on small screens */
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: rgb(245, 245, 245);
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 70%; /* Default for larger screens */
+  height: 100vh;
+  align-items: center;
+  margin: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  /* Hide scroll bar */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  padding-bottom: 50px;
+}
+
+/* Optional: Scrollbar styling for container */
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+.container::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+/* Buttons row */
+.buttons {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.123);
+}
+
+.active {
+  color: #495057;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.inactive {
+  color: #008080;
+  background-color: transparent;
+  border-color: #dee2e6 #dee2e6 #fff;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.inactive:hover {
+  color: #0080ff;
+}
+
+.title {
+  margin-top: 0;
+  margin-bottom: .5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #008080;
+  font-size: 1.75rem;
+}
+
+.subtitle {
+  margin-top: 0;
+  margin-bottom: 0px;
+  font-weight: 500;
+  line-height: 1.2;
+  box-sizing: border-box;
+  color: black;
+  font-size: 1.75rem;
+  text-align: center !important;
+  font-weight: 600;
+}
+
+.line {
+  border-bottom: 0.5px solid #008080;
+  margin-bottom: 10px;
+  width: 100%;
+  margin-top: -10px;
+}
+
+.options {
+  width: 100%;
+  display: flex;
+  gap: 30px;
+  margin-top: 10px;
+  flex-wrap: wrap; /* Allows items to wrap to next line on smaller screens */
+  margin-bottom: 10px;
+}
+
+.options button {
+  color: #ffffff;
+  background-color: #008080;
+  border-color: #dee2e6 #dee2e6 #fff;
+  height: 60px;
+  font-size: 0.75rem;
+  border: none;
+  cursor: pointer;
+  margin-bottom: .5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  flex-grow: 1; /* Allow buttons to grow and fill space */
+}
+
+.options a
+{
+    color: #ffffff;
+  background-color: #008080;
+  border-color: #dee2e6 #dee2e6 #fff;
+  height: 60px;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  margin-bottom: .5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  flex-grow: 1; /* Allow buttons to grow and fill space */
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.option {
+  width: 30%; /* Default for larger screens */
+}
+
+.call {
+  width: 67.7%; /* Default for larger screens */
+}
+
+.package {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-bottom: 1px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.123);
+  border-top: 1px solid rgba(0, 0, 0, 0.123);
+  padding-top: 10px;
+}
+
+.package label {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  min-width: 150px;
+}
+
+.package button {
+  color: #ffffff;
+  background-color: #008080;
+  border-color: #dee2e6 #dee2e6 #fff;
+  height: 30px;
+  font-size: 1.05rem;
+  border: none;
+  cursor: pointer;
+  margin-bottom: .5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  width: 35%; /* Default for larger screens */
+}
+
+/* --- Smooth Transition Start --- */
+
+/* Base style for collapsed state */
+.packagedetails {
+  flex: 1 1 auto;
+  padding: 1rem 1rem;
+  position: relative;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
+  width: 90%; /* Default for larger screens */
+
+  /* **Crucial for Transition** */
+  max-height: 0; /* Starts hidden */
+  overflow: hidden; /* Hides content that exceeds max-height */
+  opacity: 0; /* Starts completely transparent */
+  transform: scaleY(0.95); /* Slight vertical scale for a subtle effect */
+  transform-origin: top; /* Ensures scaling happens from the top */
+  /* Combine transitions for multiple properties */
+  transition: max-height 0.4s ease-out, opacity 0.4s ease-out, transform 0.4s ease-out,
+              padding 0.4s ease-out, border-color 0.4s ease-out; /* Add padding and border-color to transition */
+
+  /* Set padding and border to 0/transparent when collapsed to ensure smooth animation */
+  padding-top: 0;
+  padding-bottom: 0;
+  border-color: transparent;
+}
+
+/* Class to apply when the details should be active/expanded */
+.packagedetailsActive {
+  max-height: 1000px; /* A value larger than the maximum possible content height */
+  opacity: 1; /* Fully visible */
+  transform: scaleY(1); /* Resets scale to normal */
+  padding-top: 1rem; /* Restore original padding */
+  padding-bottom: 1rem; /* Restore original padding */
+  border-color: rgba(0,0,0,.125); /* Restore original border color */
+  min-height: 420px;
+}
+
+/* --- Smooth Transition End --- */
+
+
+.blue
+{
+  color: #055160;
+  background-color: #cff4fc;
+  border-color: #b6effb;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: .25rem;
+  border: 1px solid transparent;
+}
+
+.packagedetails p
+{
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: .5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  box-sizing: border-box;
+}
+
+.steps
+{
+  border: 1px solid #008080;
+  margin-bottom: 1rem;
+  border-radius: .25rem;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+}
+
+.steps label
+{
+  border-width: 0 1px;
+  color: #212529;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: .5rem .5rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.123);
+  border-top: 1px solid rgba(0, 0, 0, 0.123);
+}
+
+.steps span
+{
+  font-weight: bold;
+}
+
+.steps button
+{
+  color: #ffffff;
+  background-color: #008080;
+  border-color: #dee2e6 #dee2e6 #fff;
+  height: 40px;
+  font-size: 1.05rem;
+  border: none;
+  cursor: pointer;
+  margin-bottom: .5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  width: 98%;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.steps button:hover
+{
+  color: #212529;
+}
+
+/* Smooth transitions on interactive elements */
+.active,
+.inactive,
+.options button,
+.package button,
+.steps button {
+  transition: all 0.3s ease;
+}
+
+.inactive:hover {
+  color: #0080ff;
+  transition: color 0.3s ease;
+}
+
+.steps button:hover {
+  color: #212529;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.strechedline
+{
+  border: 1px solid #008080;
+  width: 100vw;
+}
+
+.copyright
+{
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: black;
+  text-align: center !important;
+  margin: 0;
+  margin-bottom: -10px;
+}
+
+.copyright a
+{
+  text-decoration: none;
+  color: #008080;
+}
+
+
+/* --- Mobile Phones (Portrait and Landscape) --- */
+@media (max-width: 767px) {
+  .container {
+    width: 95%; /* Make container wider on small screens */
+    padding: 15px; /* Add some padding to the sides */
+    gap: 10px; /* Reduce gap between elements */
+  }
+
+  .title {
+    font-size: 1.5rem; /* Smaller title */
+  }
+
+  .subtitle {
+    font-size: 1.25rem; /* Smaller subtitle */
+  }
+
+  .buttons {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 5px; /* Smaller gap */
+  }
+
+  .buttons button {
+    width: 100%; /* Make buttons full width */
+    height: 35px; /* Slightly smaller height */
+    font-size: 15px;
+  }
+
+  .active, .inactive {
+    padding: 0 5px; /* Adjust padding */
+    border-radius: 5px; /* More uniform border radius */
+  }
+
+  .options {
+    flex-direction: column; /* Stack options buttons vertically */
+    gap: 10px; /* Smaller gap */
+  }
+
+  .options button {
+    width: 100%; /* Make all option buttons full width */
+    height: 50px; /* Slightly smaller height */
+    font-size: 0.85rem; /* Adjust font size */
+  }
+
+  .option, .call {
+    width: 100%; /* Override specific widths to be full width */
+  }
+
+  .package {
+    flex-direction: column; /* Stack package label, price, and button */
+    align-items: flex-start; /* Align items to the left */
+    gap: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .package label {
+    width: 100%; /* Ensure labels take full width */
+    text-align: left;
+    margin-bottom: 0px;
+  }
+
+  .package button {
+    width: 100%; /* Make "More Details" button full width */
+    height: 40px; /* Larger tap target */
+    font-size: 1rem;
+  }
+
+  .packagedetails {
+    width: 95%; /* Adjust width for package details */
+    padding: 0.75rem; /* Smaller padding */
+  }
+
+  .packagedetailsActive {
+    min-height: auto; /* Allow height to adjust naturally on mobile */
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    min-height: 450px;
+  }
+
+  .packagedetails p {
+    font-size: 1rem; /* Smaller paragraph font size */
+  }
+
+  .steps label {
+    font-size: 0.9rem; /* Smaller step font size */
+    padding: 0.4rem;
+  }
+
+  .steps button {
+    height: 35px;
+    font-size: 0.95rem;
+  }
+
+  .copyright {
+    font-size: 0.8rem; /* Smaller copyright text */
+  }
+
+  .strechedline {
+    width: 100%; /* Ensure it doesn't stretch beyond viewport */
+  }
+}
+
+/* --- Tablets (Portrait and Landscape) --- */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    width: 85%; /* Slightly wider container than desktop, but not full width */
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+  }
+
+  .options {
+    gap: 20px; /* Adjust gap slightly */
+  }
+
+  .options button {
+    font-size: 0.8rem; /* Slightly larger font size for buttons */
+  }
+
+  /* Keep the 30% and 67.7% for .option and .call as they might still fit well */
+  .option {
+    width: 30%;
+  }
+  .call {
+    width: 67.7%;
+  }
+
+  .package label {
+    font-size: 0.95rem; /* Slight adjustment */
+  }
+
+  .package button {
+    width: 30%; /* Slightly narrower button for more space */
+    font-size: 1rem;
+  }
+
+  .packagedetails {
+    width: 90%; /* Maintain similar width to desktop */
+    padding: 0.85rem;
+  }
+
+  .packagedetails p {
+    font-size: 1.1rem;
+  }
+
+  .steps label {
+    font-size: 0.95rem;
+  }
+
+  .steps button {
+    height: 38px;
+    font-size: 1rem;
+  }
+
+  .copyright {
+    font-size: 0.9rem;
+  }
+
+  .strechedline {
+    width: 100%; /* Ensure it doesn't stretch beyond viewport */
+  }
+}
